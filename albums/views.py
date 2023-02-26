@@ -11,8 +11,5 @@ class AlbumView(generics.ListCreateAPIView):
     serializer_class = AlbumSerializer
     queryset = Album.objects.all()
 
-    def paginate_queryset(self, queryset):
-        return super().paginate_queryset(queryset)
-
     def perform_create(self, serializers):
         return serializers.save(user_id=self.request.user.id)
